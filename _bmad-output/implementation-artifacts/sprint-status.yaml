@@ -1,0 +1,135 @@
+sprint:
+  number: 1
+  name: "Core Foundation"
+  status: ready
+  start_date: null
+  end_date: null
+  
+  epic: E1
+  epic_name: "Core Foundation"
+  
+  stories:
+    - id: E1-S1
+      title: "Player movement (WASD/arrows) with 8-directional"
+      points: 3
+      status: ready
+      assignee: null
+      tasks:
+        - "Create Player scene with CharacterBody2D"
+        - "Implement movement input handling"
+        - "Add 8-directional movement with WASD/arrows"
+        - "Set movement speed to 200 units/sec"
+        - "Add boundary collision"
+        
+    - id: E1-S2
+      title: "Player collision with arena boundaries"
+      points: 2
+      status: ready
+      assignee: null
+      tasks:
+        - "Create arena boundary (StaticBody2D)"
+        - "Add collision shapes to arena edges"
+        - "Test player cannot leave arena"
+        
+    - id: E1-S3
+      title: "Basic enemy (SpermCell) that charges at player"
+      points: 5
+      status: ready
+      assignee: null
+      tasks:
+        - "Create Enemy base scene with CharacterBody2D"
+        - "Implement SpermCell enemy type"
+        - "Add movement AI (charge at player)"
+        - "Set enemy stats (HP: 10, Speed: 150)"
+        - "Test enemy reaches player"
+        
+    - id: E1-S4
+      title: "Enemy-player collision (damage on contact)"
+      points: 3
+      status: ready
+      assignee: null
+      tasks:
+        - "Add HitBox to enemy (Area2D)"
+        - "Add HurtBox to player (Area2D)"
+        - "Implement damage on collision"
+        - "Add damage cooldown (prevent spam)"
+        
+    - id: E1-S5
+      title: "Player health system (take damage, die)"
+      points: 3
+      status: ready
+      assignee: null
+      tasks:
+        - "Add health variable to player"
+        - "Implement take_damage() function"
+        - "Implement die() function"
+        - "Emit player_damaged signal"
+        - "Emit player_died signal"
+        
+    - id: E1-S6
+      title: "Basic auto-attack weapon (Yolk Spit)"
+      points: 5
+      status: ready
+      assignee: null
+      tasks:
+        - "Create Weapon base class"
+        - "Implement Yolk Spit weapon"
+        - "Add fire rate cooldown"
+        - "Create projectile scene"
+        - "Implement projectile movement"
+        
+    - id: E1-S7
+      title: "Weapon fires at nearest enemy automatically"
+      points: 3
+      status: ready
+      assignee: null
+      tasks:
+        - "Find nearest enemy function"
+        - "Calculate firing direction"
+        - "Auto-fire when enemy in range"
+        - "Test weapon targets correctly"
+        
+    - id: E1-S8
+      title: "Projectile hits enemy (damage application)"
+      points: 2
+      status: ready
+      assignee: null
+      tasks:
+        - "Add collision detection to projectile"
+        - "Apply damage on hit"
+        - "Destroy projectile on hit"
+        - "Emit weapon_hit signal"
+        
+    - id: E1-S9
+      title: "Enemy death (HP reaches 0, despawn)"
+      points: 2
+      status: ready
+      assignee: null
+      tasks:
+        - "Check HP in enemy"
+        - "Call die() when HP <= 0"
+        - "Emit enemy_died signal"
+        - "Queue free enemy"
+        
+  total_points: 28
+  completed_points: 0
+  velocity_target: 28
+  
+  notes: |
+    Sprint 1 focuses on getting a playable prototype.
+    By end of sprint, player should be able to:
+    - Move around arena
+    - Auto-attack enemies
+    - Kill enemies
+    - Take damage and die
+    
+    No UI, no leveling, no waves yet - just core gameplay.
+    
+  risks:
+    - "Projectile pooling may need optimization"
+    - "Enemy AI pathfinding complexity"
+    
+  dependencies:
+    - "Project structure already exists"
+    - "SignalBus autoload ready"
+    - "GameManager autoload ready"
