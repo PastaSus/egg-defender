@@ -4,6 +4,7 @@ sprint:
   status: ready
   start_date: null
   end_date: null
+  last_updated: "2026-09-18"
   
   epic: E1
   epic_name: "Core Foundation"
@@ -12,7 +13,8 @@ sprint:
     - id: E1-S1
       title: "Player movement (WASD/arrows) with 8-directional"
       points: 3
-      status: ready
+      status: done
+      story_file: "_bmad-output/implementation-artifacts/1-1-player-movement.md"
       assignee: null
       tasks:
         - "Create Player scene with CharacterBody2D"
@@ -24,7 +26,8 @@ sprint:
     - id: E1-S2
       title: "Player collision with arena boundaries"
       points: 2
-      status: ready
+      status: done
+      story_file: "_bmad-output/implementation-artifacts/1-2-arena-boundary-collision.md"
       assignee: null
       tasks:
         - "Create arena boundary (StaticBody2D)"
@@ -112,7 +115,7 @@ sprint:
         - "Queue free enemy"
         
   total_points: 28
-  completed_points: 0
+  completed_points: 5
   velocity_target: 28
   
   notes: |
