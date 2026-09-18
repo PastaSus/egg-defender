@@ -1,0 +1,28 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; but it can also be manually edited.
+
+[application]
+
+config/name="Egg Defender"
+config/description="A 2D horde-survival arcade game where an egg cell defends against swarms of sperm."
+run/main_scene="res://core/autoload/game_manager.gd"
+config/features=PackedStringArray("4.2", "GL Compatibility")
+
+[autoload]
+
+SignalBus="*res://core/autoload/signal_bus.gd"
+GameManager="*res://core/autoload/game_manager.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0

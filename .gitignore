@@ -1,0 +1,9 @@
+# Godot
+.godot/
+
+# Agent configs (add/remove based on who uses what)
+.cline/
+.opencode/
+
+# BMad Method
+.bmad/
