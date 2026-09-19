@@ -5,7 +5,7 @@ sprint:
   start_date: null
   end_date: null
   last_updated: "2026-09-19"
-  # 2026-09-19: E1-S4 and E1-S5 done
+  # 2026-09-19: E1-S4 and E1-S5 done; E1-S6 done
   
   epic: E1
   epic_name: "Core Foundation"
@@ -79,7 +79,8 @@ sprint:
     - id: E1-S6
       title: "Basic auto-attack weapon (Yolk Spit)"
       points: 5
-      status: ready
+      status: done
+      story_file: "_bmad-output/implementation-artifacts/1-6-yolk-spit-weapon.md"
       assignee: null
       tasks:
         - "Create Weapon base class"
@@ -122,7 +123,7 @@ sprint:
         - "Queue free enemy"
         
   total_points: 28
-  completed_points: 16
+  completed_points: 21
   velocity_target: 28
   
   notes: |

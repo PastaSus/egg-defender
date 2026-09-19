@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://features/player_egg/player.gd" id="1_player"]
 [ext_resource type="Script" path="res://features/player_egg/player_hurt_box.gd" id="2_hurtbox"]
 [ext_resource type="Script" path="res://core/data/stats_resource.gd" id="3_stats"]
+[ext_resource type="PackedScene" path="res://features/weapons/projectile_weapon.tscn" id="4_weapon"]
+[ext_resource type="Script" path="res://core/data/weapon_stats.gd" id="5_weaponstats"]
+[ext_resource type="PackedScene" path="res://features/weapons/projectile_base.tscn" id="6_projectile"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yolk"]
 radius = 16.0
@@ -15,6 +18,16 @@ resource_local_to_scene = true
 script = ExtResource("3_stats")
 health = 100.0
 cooldown = 1.0
+
+[sub_resource type="Resource" id="WeaponStats_yolkspit"]
+resource_local_to_scene = true
+script = ExtResource("5_weaponstats")
+weapon_name = "Yolk Spit"
+weapon_type = "projectile"
+base_damage = 10.0
+fire_rate = 1.0
+speed = 400.0
+projectile_scene = ExtResource("6_projectile")
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
@@ -37,3 +50,6 @@ stats = SubResource("StatsResource_player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_hurtbox")
+
+[node name="Weapon" parent="." instance=ExtResource("4_weapon")]
+stats = SubResource("WeaponStats_yolkspit")

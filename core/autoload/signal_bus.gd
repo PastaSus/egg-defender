@@ -14,6 +14,8 @@ signal player_health_changed(current: float, maximum: float)
 ## Emitted exactly once when the player's health reaches 0. GameManager decides what it means.
 signal player_died()
 signal wave_completed()
+## A weapon just fired. Nothing listens yet.
+signal weapon_fired(weapon_name: String, position: Vector2)
 ## Raw contact report from an enemy hitbox, emitted every physics frame while overlapping.
 ## Only PlayerHurtBox should listen; it collapses these into player_damaged.
 signal enemy_reached_player(damage: int)
