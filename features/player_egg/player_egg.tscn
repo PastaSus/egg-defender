@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://features/player_egg/player.gd" id="1_player"]
+[ext_resource type="Script" path="res://features/player_egg/player_hurt_box.gd" id="2_hurtbox"]
+[ext_resource type="Script" path="res://core/data/stats_resource.gd" id="3_stats"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yolk"]
 radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hurtbox"]
+radius = 8.0
+
+[sub_resource type="Resource" id="StatsResource_player"]
+resource_local_to_scene = true
+script = ExtResource("3_stats")
+cooldown = 1.0
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
@@ -15,3 +25,13 @@ script = ExtResource("1_player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yolk")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_hurtbox")
+stats = SubResource("StatsResource_player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_hurtbox")

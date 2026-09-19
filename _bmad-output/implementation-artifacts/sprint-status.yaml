@@ -5,6 +5,7 @@ sprint:
   start_date: null
   end_date: null
   last_updated: "2026-09-19"
+  # 2026-09-19: E1-S4 implemented and code-reviewed
   
   epic: E1
   epic_name: "Core Foundation"
@@ -50,7 +51,8 @@ sprint:
     - id: E1-S4
       title: "Enemy-player collision (damage on contact)"
       points: 3
-      status: ready
+      status: done
+      story_file: "_bmad-output/implementation-artifacts/1-4-enemy-player-contact-damage.md"
       assignee: null
       tasks:
         - "Add HitBox to enemy (Area2D)"
@@ -67,7 +69,10 @@ sprint:
         - "Add health variable to player"
         - "Implement take_damage() function"
         - "Implement die() function"
-        - "Emit player_damaged signal"
+        # Story 1.4 code review: take_damage() must NOT re-emit player_damaged (that is the
+        # incoming request it listens to) - emit player_health_changed for HUD/feedback instead.
+        - "Listen to player_damaged and apply it in take_damage()"
+        - "Emit player_health_changed signal"
         - "Emit player_died signal"
         
     - id: E1-S6

@@ -17,6 +17,9 @@ position = Vector2(640, 360)
 [node name="SpermCell" parent="." unique_id=1150901066 instance=ExtResource("2_spermcell")]
 position = Vector2(100, 360)
 
+[node name="SpermCell2" parent="." instance=ExtResource("2_spermcell")]
+position = Vector2(1180, 360)
+
 [node name="ArenaBoundary" type="StaticBody2D" parent="." unique_id=2082883132]
 collision_mask = 0
 
