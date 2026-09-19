@@ -4,6 +4,8 @@ sprint:
   status: ready
   start_date: null
   end_date: null
+  last_updated: "2026-09-19"
+  # 2026-09-19: E1-S4 and E1-S5 done; E1-S6 done
   
   epic: E1
   epic_name: "Core Foundation"
@@ -12,7 +14,8 @@ sprint:
     - id: E1-S1
       title: "Player movement (WASD/arrows) with 8-directional"
       points: 3
-      status: ready
+      status: done
+      story_file: "_bmad-output/implementation-artifacts/1-1-player-movement.md"
       assignee: null
       tasks:
         - "Create Player scene with CharacterBody2D"
@@ -24,7 +27,8 @@ sprint:
     - id: E1-S2
       title: "Player collision with arena boundaries"
       points: 2
-      status: ready
+      status: done
+      story_file: "_bmad-output/implementation-artifacts/1-2-arena-boundary-collision.md"
       assignee: null
       tasks:
         - "Create arena boundary (StaticBody2D)"
@@ -34,7 +38,8 @@ sprint:
     - id: E1-S3
       title: "Basic enemy (SpermCell) that charges at player"
       points: 5
-      status: ready
+      status: done
+      story_file: "_bmad-output/implementation-artifacts/1-3-spermcell-charge-enemy.md"
       assignee: null
       tasks:
         - "Create Enemy base scene with CharacterBody2D"
@@ -46,7 +51,8 @@ sprint:
     - id: E1-S4
       title: "Enemy-player collision (damage on contact)"
       points: 3
-      status: ready
+      status: done
+      story_file: "_bmad-output/implementation-artifacts/1-4-enemy-player-contact-damage.md"
       assignee: null
       tasks:
         - "Add HitBox to enemy (Area2D)"
@@ -57,19 +63,24 @@ sprint:
     - id: E1-S5
       title: "Player health system (take damage, die)"
       points: 3
-      status: ready
+      status: done
+      story_file: "_bmad-output/implementation-artifacts/1-5-player-health-system.md"
       assignee: null
       tasks:
         - "Add health variable to player"
         - "Implement take_damage() function"
         - "Implement die() function"
-        - "Emit player_damaged signal"
+        # Story 1.4 code review: take_damage() must NOT re-emit player_damaged (that is the
+        # incoming request it listens to) - emit player_health_changed for HUD/feedback instead.
+        - "Listen to player_damaged and apply it in take_damage()"
+        - "Emit player_health_changed signal"
         - "Emit player_died signal"
         
     - id: E1-S6
       title: "Basic auto-attack weapon (Yolk Spit)"
       points: 5
-      status: ready
+      status: done
+      story_file: "_bmad-output/implementation-artifacts/1-6-yolk-spit-weapon.md"
       assignee: null
       tasks:
         - "Create Weapon base class"
@@ -112,7 +123,7 @@ sprint:
         - "Queue free enemy"
         
   total_points: 28
-  completed_points: 0
+  completed_points: 21
   velocity_target: 28
   
   notes: |

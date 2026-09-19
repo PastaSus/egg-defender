@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://ocb2cl8rtt1l"]
+
+[ext_resource type="PackedScene" path="res://features/player_egg/player_egg.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://features/enemies/sperm_cell.tscn" id="2_spermcell"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_topbottom"]
+size = Vector2(1280, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_leftright"]
+size = Vector2(40, 720)
+
+[node name="Arena" type="Node2D" unique_id=386566126]
+
+[node name="Player" parent="." unique_id=1422183518 instance=ExtResource("1_player")]
+position = Vector2(640, 360)
+
+[node name="SpermCell" parent="." unique_id=1150901066 instance=ExtResource("2_spermcell")]
+position = Vector2(100, 360)
+
+[node name="SpermCell2" parent="." instance=ExtResource("2_spermcell")]
+position = Vector2(1180, 360)
+
+[node name="ArenaBoundary" type="StaticBody2D" parent="." unique_id=2082883132]
+collision_mask = 0
+
+[node name="TopWall" type="CollisionShape2D" parent="ArenaBoundary" unique_id=1571798303]
+position = Vector2(640, 20)
+shape = SubResource("RectangleShape2D_topbottom")
+
+[node name="BottomWall" type="CollisionShape2D" parent="ArenaBoundary" unique_id=734538952]
+position = Vector2(640, 700)
+shape = SubResource("RectangleShape2D_topbottom")
+
+[node name="LeftWall" type="CollisionShape2D" parent="ArenaBoundary" unique_id=305680829]
+position = Vector2(20, 360)
+shape = SubResource("RectangleShape2D_leftright")
+
+[node name="RightWall" type="CollisionShape2D" parent="ArenaBoundary" unique_id=81429642]
+position = Vector2(1260, 360)
+shape = SubResource("RectangleShape2D_leftright")

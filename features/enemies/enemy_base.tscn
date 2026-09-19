@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://features/enemies/enemy_base.gd" id="1_enemybase"]
+[ext_resource type="Script" path="res://features/enemies/enemy_hit_box.gd" id="9_hitbox"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_enemybase"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_enemybase_hitbox"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_enemybase_hurtbox"]
+radius = 12.0
+
+[node name="EnemyBase" type="CharacterBody2D"]
+motion_mode = 1
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1_enemybase")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_enemybase")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("9_hitbox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_enemybase_hitbox")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_enemybase_hurtbox")

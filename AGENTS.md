@@ -29,6 +29,10 @@ All feature scripts in `features/` **must** communicate through `SignalBus` (cor
 - Keep feature scripts self-contained within their `features/` subdirectory.
 - Extend `StatsResource` for new entity types; do not duplicate stat fields.
 
+## Review Independence
+
+For combat, damage, save-state, or any story with tricky edge cases, implement on one model and run `gds-code-review` on a different one. A reviewer that shares the implementer's blind spots tends to confirm them. Stories 1.4 and 1.5 followed this: implemented on Sonnet, reviewed on Opus, and each review caught real defects the implementation pass and manual testing missed.
+
 ## Git Workflow
 
 ### Branching Strategy
