@@ -4,7 +4,7 @@ sprint:
   status: ready
   start_date: null
   end_date: null
-  last_updated: "2026-09-18"
+  last_updated: "2026-09-19"
   
   epic: E1
   epic_name: "Core Foundation"
@@ -37,7 +37,8 @@ sprint:
     - id: E1-S3
       title: "Basic enemy (SpermCell) that charges at player"
       points: 5
-      status: ready
+      status: done
+      story_file: "_bmad-output/implementation-artifacts/1-3-spermcell-charge-enemy.md"
       assignee: null
       tasks:
         - "Create Enemy base scene with CharacterBody2D"

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://features/enemies/sperm_cell.gd" id="1_spermcell"]
+[ext_resource type="Script" path="res://core/data/enemy_stats.gd" id="2_enemystats"]
+
+[sub_resource type="Resource" id="EnemyStats_spermcell"]
+resource_local_to_scene = true
+script = ExtResource("2_enemystats")
+health = 10.0
+speed = 150.0
+damage = 10.0
+enemy_name = "Sperm Cell"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_spermcell"]
+radius = 12.0
+
+[node name="SpermCell" type="CharacterBody2D"]
+motion_mode = 1
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1_spermcell")
+stats = SubResource("EnemyStats_spermcell")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_spermcell")

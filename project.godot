@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Egg Defender"
 config/description="A 2D horde-survival arcade game where an egg cell defends against swarms of sperm."
-run/main_scene="res://core/autoload/game_manager.gd"
+run/main_scene="uid://ocb2cl8rtt1l"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [autoload]
@@ -61,6 +61,7 @@ move_right={
 
 2d_physics/layer_1="world"
 2d_physics/layer_2="player"
+2d_physics/layer_3="enemy"
 
 [rendering]
 

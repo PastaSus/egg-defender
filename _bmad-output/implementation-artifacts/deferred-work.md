@@ -1,5 +1,19 @@
 # Deferred Work Ledger
 
+## Deferred from: code review of 1-3-spermcell-charge-enemy (2026-09-19)
+
+- `features/enemies/sperm_cell.tscn` duplicates `features/enemies/enemy_base.tscn`'s node structure (root type, `motion_mode`, collision layer/mask, shape radius, child nodes) instead of being a Godot Inherited Scene, leaving the base scene as an unused template that will silently drift as shared changes (hurtbox, layers, shape) get added per-enemy in Epic 2. Deliberate: hand-authoring inherited-scene `.tscn` format outside the Godot editor is error-prone, and Story 1.3 had no editor access. Story 1.3's Task 4 explicitly required this tradeoff be flagged to the user rather than treated as final architecture — that flag was missed at hand-off, and this entry corrects it. Resolution options: convert via the editor's "New Inherited Scene", or drop `enemy_base.tscn` entirely and rely on base-*script* inheritance only.
+- Enemies neither collide with nor separate from each other (`collision_mask = 1` covers `world` only), so multiple spawns will stack into a single overlapping blob. Not observable with Story 1.3's single hand-placed enemy. Becomes real in Story 2.1 (wave spawner), which is the right place to choose between mask-based separation and a steering/separation behaviour.
+- No arrival/stop distance in `features/enemies/sperm_cell.gd`: the direction vector returns `Vector2.ZERO` at exact overlap and can oscillate under float noise near zero, so an enemy that reaches the player jitters on top of them. Cosmetic today, since enemies pass through the player harmlessly by design (Story 1.3 AC #4). Tune once Story 1.4 adds contact damage and there is real behaviour to tune against.
+
+## Untracked change observed during code review of 1-3-spermcell-charge-enemy (2026-09-19)
+
+- `project.godot`'s `run/main_scene` now points at `uid://ocb2cl8rtt1l` (= `features/gameplay/arena.tscn`), changed from the previous placeholder value `res://core/autoload/game_manager.gd` (a script path, which was never a valid main scene). This was set through the Godot editor during manual testing of Story 1.3, not by any story's task list. It incidentally closes the "no runnable main scene" gap flagged in Stories 1.1 and 1.2 Dev Notes — "Run Project" (F5) should now work, so future stories' manual-verification steps no longer need the "use F6, not F5" caveat. Recorded here so it isn't silently re-litigated or accidentally reverted; a future story that formally owns scene flow (e.g. main menu / `GameManager.start_run()` wiring in Epic 5) should decide the permanent value.
+
+## Deferred from: story creation of 1-3-spermcell-charge-enemy (2026-09-18)
+
+- `features/player_egg/player.gd` (Story 1.1) does not follow AGENTS.md's "Extend `StatsResource` for new entity types; do not duplicate stat fields" convention — it uses a bare `@export var speed` directly on the node instead of a `StatsResource`-derived resource. Not caught by Story 1.1's code review (it wasn't in scope for that review's diff-based checks). Story 1.3 follows the convention correctly for the new `EnemyStats` resource and deliberately does not "fix" Player as part of that story. Revisit Player's stats handling in a future cleanup/refactor story if consistency across entity types becomes a real problem (e.g., when a meta-progression "stat upgrade" story needs to read/modify Player's stats generically alongside enemies/weapons).
+
 ## Deferred from: code review of 1-2-arena-boundary-collision (2026-09-18)
 
 - No floor/background visual on `ArenaBoundary` (`features/gameplay/arena.tscn`) — walls are invisible collision-only geometry. Pre-existing: no art pipeline exists in the project yet (same rationale as Story 1.1's textureless Sprite2D); not required by any AC or task.
