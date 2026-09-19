@@ -5,7 +5,7 @@ sprint:
   start_date: null
   end_date: null
   last_updated: "2026-09-19"
-  # 2026-09-19: E1-S4 implemented and code-reviewed
+  # 2026-09-19: E1-S4 and E1-S5 done
   
   epic: E1
   epic_name: "Core Foundation"
@@ -63,7 +63,8 @@ sprint:
     - id: E1-S5
       title: "Player health system (take damage, die)"
       points: 3
-      status: ready
+      status: done
+      story_file: "_bmad-output/implementation-artifacts/1-5-player-health-system.md"
       assignee: null
       tasks:
         - "Add health variable to player"
@@ -121,7 +122,7 @@ sprint:
         - "Queue free enemy"
         
   total_points: 28
-  completed_points: 5
+  completed_points: 16
   velocity_target: 28
   
   notes: |

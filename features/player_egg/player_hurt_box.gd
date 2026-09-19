@@ -20,19 +20,29 @@ const FALLBACK_COOLDOWN: float = 1.0
 var _invulnerable_time_left: float = 0.0
 var _pending_damage: int = 0
 var _warned_missing_stats: bool = false
+var _player_dead: bool = false
 
 func _ready() -> void:
 	SignalBus.enemy_reached_player.connect(_on_enemy_reached_player)
+	SignalBus.player_died.connect(_on_player_died)
 
 func _physics_process(delta: float) -> void:
 	_invulnerable_time_left = maxf(_invulnerable_time_left - delta, 0.0)
 	_resolve_pending_damage()
 
 func _on_enemy_reached_player(damage: int) -> void:
+	# Enemies park on the corpse and keep reporting forever, so drop reports here rather than at
+	# resolve time: otherwise _pending_damage latches and would land on the first frame of a revive.
+	if _player_dead:
+		return
 	_pending_damage = maxi(_pending_damage, damage)
 
+func _on_player_died() -> void:
+	_player_dead = true
+	_pending_damage = 0
+
 func _resolve_pending_damage() -> void:
-	if _pending_damage <= 0:
+	if _player_dead or _pending_damage <= 0:
 		return
 	var damage: int = _pending_damage
 	_pending_damage = 0
